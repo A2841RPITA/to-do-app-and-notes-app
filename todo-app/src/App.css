@@ -1,0 +1,306 @@
+/* ===== Global Design ===== */
+
+* {
+  box-sizing: border-box;
+  }
+
+body {
+margin: 0;
+min-width: 320px;
+min-height: 100vh;
+font-family: "Segoe UI", Arial, sans-serif;
+color: #292449;
+background: linear-gradient(
+135deg,
+#e0c3fc 0%,
+#f9d8e8 45%,
+#c8e7ff 100%
+);
+background-attachment: fixed;
+}
+
+/* ===== Main App Card ===== */
+.app {
+width: min(760px, 92%);
+margin: 50px auto;
+padding: 35px;
+background: rgba(255, 255, 255, 0.88);
+border: 1px solid rgba(255, 255, 255, 0.9);
+border-radius: 26px;
+box-shadow: 0 20px 55px rgba(89, 63, 150, 0.18);
+backdrop-filter: blur(12px);
+animation: appear 0.6s ease;
+}
+
+@keyframes appear {
+from {
+opacity: 0;
+transform: translateY(18px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* ===== Heading ===== */
+.app h1 {
+margin: 0;
+text-align: center;
+font-size: clamp(28px, 5vw, 38px);
+font-weight: 800;
+color: #7145d6;
+letter-spacing: -1px;
+}
+
+.subtitle {
+margin: 12px 0 30px;
+text-align: center;
+color: #8981a7;
+font-size: 15px;
+}
+
+/* ===== Add Task Form ===== */
+.todo-form {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+padding: 15px;
+border-radius: 18px;
+background: linear-gradient(135deg, #f5efff, #fff0f6);
+border: 1px solid #eee2ff;
+}
+
+.todo-form input {
+flex: 1;
+min-width: 140px;
+padding: 13px 14px;
+color: #393052;
+background: white;
+border: 1px solid #e3d8f7;
+border-radius: 11px;
+outline: none;
+transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.todo-form input:focus {
+border-color: #a078f0;
+box-shadow: 0 0 0 4px rgba(160, 120, 240, 0.13);
+}
+
+/* ===== Buttons ===== */
+button {
+padding: 12px 17px;
+border: none;
+border-radius: 11px;
+background: linear-gradient(135deg, #8255e8, #b15be6);
+color: white;
+font-weight: 700;
+cursor: pointer;
+transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+button:hover {
+transform: translateY(-2px);
+box-shadow: 0 7px 16px rgba(112, 69, 214, 0.22);
+}
+
+button:active {
+transform: scale(0.97);
+}
+
+/* ===== Filter Buttons ===== */
+.todo-filter {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 10px;
+margin: 25px 0;
+}
+
+.todo-filter button {
+background: #f0ebfa;
+color: #71658f;
+border: 1px solid #e7def7;
+}
+
+.todo-filter button.active {
+background: linear-gradient(135deg, #7045d5, #a855df);
+color: white;
+border-color: transparent;
+box-shadow: 0 5px 14px rgba(112, 69, 213, 0.2);
+}
+
+/* ===== Task Counters ===== */
+.task-summary {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 12px;
+margin: 25px 0;
+}
+
+.task-summary span {
+padding: 15px 8px;
+text-align: center;
+border-radius: 14px;
+font-size: 13px;
+font-weight: 700;
+overflow-wrap: anywhere;
+}
+
+.task-summary span:nth-child(1) {
+color: #6540c8;
+background: #eee6ff;
+}
+
+.task-summary span:nth-child(2) {
+color: #bd6b19;
+background: #fff0d9;
+}
+
+.task-summary span:nth-child(3) {
+color: #16866b;
+background: #dff9ed;
+}
+
+/* ===== Task List ===== */
+.todo-list {
+display: grid;
+gap: 14px;
+}
+
+.todo-item {
+display: flex;
+align-items: center;
+gap: 13px;
+padding: 17px;
+background: white;
+border: 1px solid #eee8f8;
+border-left: 5px solid #a78bfa;
+border-radius: 15px;
+box-shadow: 0 5px 15px rgba(75, 55, 120, 0.06);
+transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:nth-child(3n + 2) {
+border-left-color: #f59bc6;
+}
+
+.todo-item:nth-child(3n) {
+border-left-color: #69c9ed;
+}
+
+.todo-item:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 24px rgba(75, 55, 120, 0.1);
+}
+
+.todo-item input[type="checkbox"] {
+width: 19px;
+height: 19px;
+flex-shrink: 0;
+accent-color: #8255e8;
+cursor: pointer;
+}
+
+.todo-info {
+flex: 1;
+min-width: 0;
+}
+
+.todo-info h3 {
+margin: 0 0 7px;
+color: #393052;
+overflow-wrap: anywhere;
+}
+
+.todo-info p {
+margin: 4px 0;
+color: #8a829f;
+font-size: 13px;
+}
+
+.todo-item.completed {
+background: #f2fff9;
+border-left-color: #4ac6a0;
+}
+
+.todo-item.completed .todo-info h3 {
+color: #8b9c96;
+text-decoration: line-through;
+}
+
+/* ===== Edit and Delete ===== */
+.todo-actions {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+}
+
+.todo-actions button {
+padding: 9px 12px;
+font-size: 12px;
+}
+
+.todo-actions .delete-btn {
+background: linear-gradient(135deg, #ff718b, #ef476f);
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+padding: 32px 15px;
+text-align: center;
+background: linear-gradient(135deg, #f8f3ff, #fff4f8);
+border: 1px dashed #d9c8f5;
+border-radius: 18px;
+}
+
+.empty-state h3 {
+margin: 0 0 10px;
+color: #7853c8;
+font-size: 20px;
+}
+
+.empty-state p {
+margin: 0;
+color: #9288a9;
+font-size: 14px;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 520px) {
+.app {
+width: 94%;
+margin: 20px auto;
+padding: 20px 15px;
+border-radius: 20px;
+}
+
+.todo-form {
+flex-direction: column;
+}
+
+.todo-form input,
+.todo-form button {
+width: 100%;
+}
+
+.task-summary {
+gap: 7px;
+}
+
+.task-summary span {
+padding: 12px 5px;
+font-size: 11px;
+}
+
+.todo-item {
+flex-wrap: wrap;
+padding: 13px;
+}
+
+.todo-actions {
+width: 100%;
+padding-left: 30px;
+}
+}
